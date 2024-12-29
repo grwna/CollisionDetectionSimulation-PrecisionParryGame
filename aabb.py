@@ -20,7 +20,7 @@ def aabb_collision(distance, total_half_size):
 
 
 if __name__ == "__main__":
-    WIDTH, HEIGHT = 800, 600
+    WIDTH, HEIGHT = 700, 600
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("AABB Simulation")
     clock = pygame.time.Clock()

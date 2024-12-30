@@ -38,14 +38,14 @@ if __name__ == "__main__":
 
         # Key inputs
         keys = pygame.key.get_pressed()
-        move_object(pentagon1, keys, {'left': pygame.K_LEFT, 'right': pygame.K_RIGHT, 'up': pygame.K_UP, 'down': pygame.K_DOWN}) # noqa
-        move_object(pentagon2, keys, {'left': pygame.K_a, 'right': pygame.K_d, 'up': pygame.K_w, 'down': pygame.K_s})
+        move_object(pentagon1, keys, red_controls) # noqa
+        move_object(pentagon2, keys, blue_controls)
 
         screen.fill(BLACK)
         pentagon1.draw(RED, LIGHT_RED if collision else RED)
         pentagon2.draw(BLUE, LIGHT_BLUE if collision else BLUE)
 
-        # Display distance
+        # Display distance and half-sizes
         distance_text = f"Distance (x,y): {distance}"
         total_half_size_text = f"Total Half Size (x,y): {total_half_size}"
         distance_surface = font.render(distance_text, True, WHITE)

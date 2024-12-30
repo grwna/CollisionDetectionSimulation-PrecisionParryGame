@@ -3,16 +3,25 @@ import numpy as np
 
 
 class Pentagon:
-    def __init__(self, vertices=None, bounding_box_offset=20, position="center"):
-        if vertices is None:
-            if position == "left":
-                vertices = [(100, 200), (150, 250), (125, 300), (75, 300), (50, 250)]
-            elif position == "right":
-                vertices = [(500, 200), (550, 250), (525, 300), (475, 300), (450, 250)]
-            else:  # Default "center"
-                vertices = [(300, 200), (350, 250), (325, 300), (275, 300), (250, 250)]
+    def __init__(self, size="big", bounding_box_offset=20, position="center"):
+        scale = 1
+        if size == "small":
+            scale = 0.5
+
+        if position == "left":
+            offset_x, offset_y = 205, 300  # Adjust to middle left
+            vertices = [(offset_x + (x - 100) * scale, offset_y + (y - 300) * scale)
+                        for x, y in [(100, 200), (150, 250), (125, 300), (75, 300), (50, 250)]]
+        elif position == "right":
+            vertices = [(500 * scale, 200 * scale), (550 * scale, 250 * scale),
+                        (525 * scale, 300 * scale), (475 * scale, 300 * scale), (450 * scale, 250 * scale)]
+        else:  # Default "center"
+            vertices = [(300 * scale, 200 * scale), (350 * scale, 250 * scale),
+                        (325 * scale, 300 * scale), (275 * scale, 300 * scale), (250 * scale, 250 * scale)]
+
         self.vertices = vertices
         self.create_bounding_box(bounding_box_offset)
+        self.rotation_angle = 0
 
     def create_bounding_box(self, bounding_box_offset=20):
         min_x = min(x for x, y in self.vertices) - bounding_box_offset
@@ -103,14 +112,12 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Split Second Game")
 clock = pygame.time.Clock()
 
-box1 = pygame.Rect(300, 200, 50, 50)
-box2 = pygame.Rect(300, 200, 75, 75)
-boss = pygame.Rect(500, 300, 90, 90)
 pentagon1 = Pentagon(position="left")
 pentagon2 = Pentagon(position="right")
-box1_health = 100
-box2_health = 100
-boss_health = 100
+pentagon1_health = 100
+pentagon2_health = 100
+parry_display_timer = 0
+hit_display_timer = 0
 
 state = {
     "show_bounding_box": True,

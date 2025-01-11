@@ -1,4 +1,4 @@
-from main_game import *
+from src.main_game import *
 
 
 if __name__ == "__main__":

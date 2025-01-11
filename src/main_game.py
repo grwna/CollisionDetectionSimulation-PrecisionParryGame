@@ -1,6 +1,6 @@
-from aabb import *
-from sat import *
-from game_logic import *
+from src.aabb import *
+from src.sat import *
+from src.game_logic import *
 import pygame
 
 
@@ -58,7 +58,7 @@ def combat(keys, font, pentagon1, pentagon2, health, can_parry, parry_timer, col
     if collision_sat:
         if keys[pygame.K_SPACE] and can_parry:
             # Parry successful
-            health['pentagon2'] = max(0, health['pentagon2'] - 5)
+            health['pentagon2'] = max(0, health['pentagon2'] - 10)
             can_parry = False
             parry_timer = 0
             if parry_display_timer == 0:
@@ -66,7 +66,7 @@ def combat(keys, font, pentagon1, pentagon2, health, can_parry, parry_timer, col
             knockback(pentagon2, pentagon1, 100)  # Knockback Boss
         else:
             # Hit
-            health['pentagon1'] = max(0, health['pentagon1'] - 20)
+            health['pentagon1'] = max(0, health['pentagon1'] - 10)
             if hit_display_timer == 0:
                 hit_display_timer = 30
             knockback(pentagon1, pentagon2, 150)  # Knockback player

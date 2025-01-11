@@ -1,6 +1,6 @@
 import numpy as np
 import sys
-from game_logic import *
+from src.game_logic import *
 
 
 def aabb_proximity(box1, box2):

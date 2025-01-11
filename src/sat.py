@@ -1,5 +1,5 @@
 import sys
-from game_logic import *
+from src.game_logic import *
 
 
 def sat_collsion(obj1, obj2):
@@ -7,7 +7,7 @@ def sat_collsion(obj1, obj2):
         o1_min, o1_max = obj1.project_onto_axis(normal)
         o2_min, o2_max = obj2.project_onto_axis(normal)
         if o1_max < o2_min or o2_max < o1_min:
-            return False
+            return False 
     return True
 
 

@@ -1,5 +1,10 @@
 import pygame
 import numpy as np
+import os
+import sys
+
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.insert(0, parent_dir)
 
 
 class Pentagon:
@@ -50,7 +55,7 @@ class Pentagon:
     def draw_normals(self):
         for i, (nx, ny) in enumerate(self.normals):
             x1, y1 = self.vertices[i]
-            x2, y2 = self.vertices[(i + 1) % len(self.vertices)] 
+            x2, y2 = self.vertices[(i + 1) % len(self.vertices)]
             edge_midpoint = ((x1 + x2) / 2, (y1 + y2) / 2)
             normal_endpoint = (edge_midpoint[0] + nx * 20, edge_midpoint[1] + ny * 20)
             pygame.draw.line(screen, (255, 255, 0), edge_midpoint, normal_endpoint, 2)
